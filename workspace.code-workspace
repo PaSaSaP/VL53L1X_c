@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "../../stm8_example"
+		},
+		{
+			"path": "../CRC"
+		},
+		{
+			"path": "../VL53L0X"
+		},
+		{
+			"path": "../vl53l1x-arduino"
+		},
+		{
+			"path": "../CRC_c"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

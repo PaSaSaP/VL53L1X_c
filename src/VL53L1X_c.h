@@ -1258,8 +1258,8 @@ struct VL53L1X_RangingData
 {
   uint16_t range_mm;
   enum VL53L1X_RangeStatus range_status;
-  float peak_signal_count_rate_MCPS;
-  float ambient_count_rate_MCPS;
+  uint16_t peak_signal_count_rate_MCPS;
+  uint16_t ambient_count_rate_MCPS;
 };
 
 // for storing values read from RESULT__RANGE_STATUS (0x0089)
@@ -1317,7 +1317,7 @@ void VL53L1X_setAddress(struct VL53L1X* vl, uint8_t new_addr);
 void VL53L1X_setAddressNoSend(struct VL53L1X* vl, uint8_t new_addr);
 uint8_t VL53L1X_getAddress(struct VL53L1X* vl);
 
-bool VL53L1X_init(struct VL53L1X* vl, bool io_2v8); // io_2v8 = true def param
+bool VL53L1X_init(struct VL53L1X* vl); // io_2v8 = true def param
 void VL53L1X_writeReg(struct VL53L1X* vl, uint16_t reg, uint8_t value);
 void VL53L1X_writeReg16Bit(struct VL53L1X* vl, uint16_t reg, uint16_t value);
 void VL53L1X_writeReg32Bit(struct VL53L1X* vl, uint16_t reg, uint32_t value);
@@ -1325,29 +1325,29 @@ uint8_t VL53L1X_readReg(struct VL53L1X* vl, enum VL53L1X_regAddr reg);
 uint16_t VL53L1X_readReg16Bit(struct VL53L1X* vl, uint16_t reg);
 uint32_t VL53L1X_readReg32Bit(struct VL53L1X* vl, uint16_t reg);
 
-bool VL53L1X_setDistanceMode(struct VL53L1X* vl, enum VL53L1X_DistanceMode mode);
-enum VL53L1X_DistanceMode VL53L1X_getDistanceMode(struct VL53L1X* vl);
+bool VL53L1X_setDistanceMode(struct VL53L1X* vl);
+// enum VL53L1X_DistanceMode VL53L1X_getDistanceMode(struct VL53L1X* vl);
 
-bool VL53L1X_setMeasurementTimingBudget(struct VL53L1X* vl, uint32_t budget_us);
-uint32_t VL53L1X_getMeasurementTimingBudget(struct VL53L1X* vl);
+bool VL53L1X_setMeasurementTimingBudget(struct VL53L1X* vl);
+// uint32_t VL53L1X_getMeasurementTimingBudget(struct VL53L1X* vl);
 
-void VL53L1X_setROISize(struct VL53L1X* vl, uint8_t width, uint8_t height);
-void VL53L1X_getROISize(struct VL53L1X* vl, uint8_t * width, uint8_t * height);
-void VL53L1X_setROICenter(struct VL53L1X* vl, uint8_t spadNum);
-uint8_t VL53L1X_getROICenter(struct VL53L1X* vl);
+// void VL53L1X_setROISize(struct VL53L1X* vl, uint8_t width, uint8_t height);
+// void VL53L1X_getROISize(struct VL53L1X* vl, uint8_t * width, uint8_t * height);
+// void VL53L1X_setROICenter(struct VL53L1X* vl, uint8_t spadNum);
+// uint8_t VL53L1X_getROICenter(struct VL53L1X* vl);
 
 void VL53L1X_startContinuous(struct VL53L1X* vl, uint32_t period_ms);
-void VL53L1X_stopContinuous(struct VL53L1X* vl);
-uint16_t VL53L1X_read(struct VL53L1X* vl, bool blocking); // blocking=true
-uint16_t VL53L1X_readRangeContinuousMillimeters(struct VL53L1X* vl, bool blocking); // blocking=true, alias of read()
-uint16_t VL53L1X_readSingle(struct VL53L1X* vl, bool blocking); // blocking=true
-uint16_t VL53L1X_readRangeSingleMillimeters(struct VL53L1X* vl, bool blocking); // blocking=true, alias of readSingle()
+// void VL53L1X_stopContinuous(struct VL53L1X* vl);
+uint16_t VL53L1X_read(struct VL53L1X* vl); // blocking=true
+uint16_t VL53L1X_readRangeContinuousMillimeters(struct VL53L1X* vl); // blocking=true, alias of read()
+// uint16_t VL53L1X_readSingle(struct VL53L1X* vl, bool blocking); // blocking=true
+// uint16_t VL53L1X_readRangeSingleMillimeters(struct VL53L1X* vl, bool blocking); // blocking=true, alias of readSingle()
 
 // check if sensor has new reading available
 // assumes interrupt is active low (GPIO_HV_MUX__CTRL bit 4 is 1)
 bool VL53L1X_dataReady(struct VL53L1X* vl);
 
-const char* VL53L1X_rangeStatusToString(enum VL53L1X_RangeStatus status);
+// const char* VL53L1X_rangeStatusToString(enum VL53L1X_RangeStatus status);
 
 void VL53L1X_setTimeout(struct VL53L1X* vl, uint16_t timeout);
 uint16_t VL53L1X_getTimeout(struct VL53L1X* vl);
